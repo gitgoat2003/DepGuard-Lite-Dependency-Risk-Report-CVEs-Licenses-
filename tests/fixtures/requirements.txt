@@ -1,0 +1,6 @@
+requests==2.25.0
+flask==1.1.0
+django==3.0.0
+numpy==1.21.0
+pillow==8.0.0
+cryptography==3.3.0
