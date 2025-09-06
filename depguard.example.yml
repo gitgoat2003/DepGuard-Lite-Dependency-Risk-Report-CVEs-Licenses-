@@ -1,0 +1,72 @@
+# depguard.yml - DepGuard Lite Configuration Example
+
+# Severity thresholds
+severity:
+  fail_on:
+    - critical
+    - high
+  warn_on:
+    - medium
+  ignore:
+    - low
+
+# License policies
+licenses:
+  allowed:
+    - MIT
+    - Apache-2.0
+    - BSD-2-Clause
+    - BSD-3-Clause
+    - ISC
+  
+  review_required:
+    - GPL-2.0
+    - GPL-3.0
+    - LGPL-2.1
+    - LGPL-3.0
+    - AGPL-3.0
+  
+  forbidden:
+    - SSPL-1.0
+    - Commons-Clause
+
+# Vulnerability sources
+sources:
+  osv:
+    enabled: true
+    timeout: 30
+  
+  github_advisories:
+    enabled: true
+    token: ${GITHUB_TOKEN}
+
+# Caching
+cache:
+  enabled: true
+  ttl_hours: 24
+  directory: ./.depguard-cache
+
+# Reporting
+reports:
+  formats:
+    - markdown
+    - json
+  
+  output_dir: ./reports
+  
+  markdown:
+    include_executive_summary: true
+    collapsible_details: true
+    include_upgrade_commands: true
+  
+  pr_comment:
+    enabled: false
+    max_length: 65000
+
+# Exclusions
+exclude:
+  packages:
+    - test-package
+  
+  vulnerabilities:
+    - CVE-2021-12345  # Known false positive
